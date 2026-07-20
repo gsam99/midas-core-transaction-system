@@ -13,18 +13,7 @@ extended beyond the program scaffold.
 
 ---
 
-## Architecture
 
-```mermaid
-flowchart LR
-    P[Kafka Producer<br/>transaction stream] -->|JSON| T([trader-updates<br/>topic])
-    T --> L[KafkaConsumer<br/>@KafkaListener]
-    L --> C[DatabaseConduit<br/>validation & orchestration]
-    C -->|lookup / update| R[(H2 Database<br/>users + ledger)]
-    C -->|POST /incentive| I[Incentive API<br/>external service]
-    B[BalanceController<br/>GET /balance] -->|query| R
-    Client[HTTP Client] --> B
-```
 
 ## Transaction Flow
 
